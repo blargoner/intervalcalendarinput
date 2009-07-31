@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: intervalcalendarinput   intervalcalendarinput.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css?stamp=1249079094.03" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css?stamp=1249079094.03" />
+
+    <script type="text/javascript" src="assets/api-js?stamp=1249079094.03"></script>
+    <script type="text/javascript" src="assets/ac-js?stamp=1249079094.03"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://blargon.net/" title="blargon">blargon</a></h1>
+        <h3>intervalcalendarinput&nbsp; <span class="subtitle">0.1</span></h3>
+        <a href="./index.html" title="blargon">blargon</a> 
+            &gt; <a href="./module_intervalcalendarinput.html" title="intervalcalendarinput">intervalcalendarinput</a>
+                
+                 &gt; intervalcalendarinput.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+<div class="highlight"><pre><span class="c">/**</span>
+<span class="c"> * IntervalCalendarInput connects an IntervalCalendar instance with two text</span>
+<span class="c"> * input fields containing to the lower and upper dates of the interval.</span>
+<span class="c"> *</span>
+<span class="c"> * @module intervalcalendarinput</span>
+<span class="c"> * @requires yahoo, dom, event, element, calendar, intervalcalendar</span>
+<span class="c"> */</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c">// Shortcuts</span>
+	<span class="kd">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">lang</span><span class="o">,</span>
+		<span class="nx">Dom</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">Dom</span><span class="o">,</span>
+		<span class="nx">Event</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">Event</span><span class="o">,</span>
+		<span class="nx">Element</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">Element</span><span class="o">,</span>
+		<span class="nx">DateMath</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">DateMath</span><span class="o">,</span>
+		<span class="nx">IntervalCalendar</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">BLARGON</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">IntervalCalendar</span><span class="o">;</span>
+
+	<span class="c">/**</span>
+<span class="c">	 * IntervalCalendarInput instantiates an IntervalCalendar and associates</span>
+<span class="c">	 * it with two specified input fields which contain the lower and upper</span>
+<span class="c">	 * dates of the interval. The states of the IntervalCalendar and text</span>
+<span class="c">	 * inputs are kept in sync as the user interacts.</span>
+<span class="c">	 * &lt;p&gt;The format of the date strings in the input fields depends on the</span>
+<span class="c">	 * localization settings of the IntervalCalendar instance.&lt;/p&gt;</span>
+<span class="c">	 *</span>
+<span class="c">	 * @namespace YAHOO.BLARGON.widget</span>
+<span class="c">	 * @class IntervalCalendarInput</span>
+<span class="c">	 * @extends YAHOO.util.Element</span>
+<span class="c">	 * @constructor</span>
+<span class="c">	 * @param {String | HTMLElement} ctr Container element for IntervalCalendar</span>
+<span class="c">	 * @param {Object} cfg Configuration object (also applied to IntervalCalendar)</span>
+<span class="c">	 */</span>
+	<span class="kd">function</span> <span class="nx">IntervalCalendarInput</span><span class="p">(</span><span class="nx">ctr</span><span class="o">,</span> <span class="nx">cfg</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">cfg</span> <span class="o">=</span> <span class="nx">cfg</span> <span class="o">||</span> <span class="p">{};</span>
+		
+		<span class="nx">IntervalCalendarInput</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">ctr</span><span class="o">,</span> <span class="nx">cfg</span><span class="p">);</span>
+		
+		<span class="k">this</span><span class="p">.</span><span class="nx">ical</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IntervalCalendar</span><span class="p">(</span><span class="nx">ctr</span><span class="o">,</span> <span class="nx">cfg</span><span class="p">);</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">_dateRegExp</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getDateRegExp</span><span class="p">();</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">_lower</span> <span class="o">=</span> <span class="nx">Dom</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">_CONFIG</span><span class="p">.</span><span class="nx">LOWER_INPUT</span><span class="p">.</span><span class="nx">key</span><span class="p">));</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">_upper</span> <span class="o">=</span> <span class="nx">Dom</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">_CONFIG</span><span class="p">.</span><span class="nx">UPPER_INPUT</span><span class="p">.</span><span class="nx">key</span><span class="p">));</span>
+		
+		<span class="k">this</span><span class="p">.</span><span class="nx">initEvents</span><span class="p">();</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">sync</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="c">/**</span>
+<span class="c">	 * Default configuration values.</span>
+<span class="c">	 * @property _DEFAULT_CONFIG</span>
+<span class="c">	 * @private</span>
+<span class="c">	 * @static</span>
+<span class="c">	 * @final</span>
+<span class="c">	 * @type Object</span>
+<span class="c">	 */</span>
+	<span class="nx">IntervalCalendarInput</span><span class="p">.</span><span class="nx">_DEFAULT_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="nx">LOWER_INPUT</span><span class="o">:</span> <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;lower_input&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span> <span class="p">}</span><span class="o">,</span>
+		<span class="nx">UPPER_INPUT</span><span class="o">:</span> <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;upper_input&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span> <span class="p">}</span>
+	<span class="p">};</span>
+	
+	<span class="kd">var</span> <span class="nx">_CONFIG</span> <span class="o">=</span> <span class="nx">IntervalCalendarInput</span><span class="p">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">;</span>
+	
+	<span class="nx">Lang</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">IntervalCalendarInput</span><span class="o">,</span> <span class="nx">Element</span><span class="o">,</span>
+		<span class="p">{</span>
+			<span class="c">/**</span>
+<span class="c">			 * Initializes configuration attributes.</span>
+<span class="c">			 * @method initAttributes</span>
+<span class="c">			 * @param {Object} cfg Initial configuration object</span>
+<span class="c">			 */</span>
+			<span class="nx">initAttributes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cfg</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">IntervalCalendarInput</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initAttributes</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">cfg</span><span class="p">);</span>
+
+				<span class="c">/**</span>
+<span class="c">				 * Input field for lower date. Must be set on instantiation.</span>
+<span class="c">				 * @attribute lower_input</span>
+<span class="c">				 * @type String | HTMLElement</span>
+<span class="c">				 * @default null</span>
+<span class="c">				 */</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">setAttributeConfig</span><span class="p">(</span><span class="nx">_CONFIG</span><span class="p">.</span><span class="nx">LOWER_INPUT</span><span class="p">.</span><span class="nx">key</span><span class="o">,</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">_CONFIG</span><span class="p">.</span><span class="nx">LOWER_INPUT</span><span class="p">.</span><span class="nx">value</span> <span class="p">});</span>
+
+				<span class="c">/**</span>
+<span class="c">				 * Input field for upper date. Must be set on instantiation.</span>
+<span class="c">				 * @attribute upper_input</span>
+<span class="c">				 * @type String | HTMLElement</span>
+<span class="c">				 * @default null</span>
+<span class="c">				 */</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">setAttributeConfig</span><span class="p">(</span><span class="nx">_CONFIG</span><span class="p">.</span><span class="nx">UPPER_INPUT</span><span class="p">.</span><span class="nx">key</span><span class="o">,</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">_CONFIG</span><span class="p">.</span><span class="nx">UPPER_INPUT</span><span class="p">.</span><span class="nx">value</span> <span class="p">});</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">setAttributes</span><span class="p">(</span><span class="nx">cfg</span><span class="o">,</span> <span class="kc">true</span><span class="p">);</span>
+			<span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Attaches event handlers.</span>
+<span class="c">			 * @method initEvents</span>
+<span class="c">			 */</span>
+			<span class="nx">initEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">ical</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="o">,</span>
+					<span class="nx">lower</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_lower</span><span class="o">,</span>
+					<span class="nx">upper</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_upper</span><span class="o">;</span>
+				
+				<span class="nx">ical</span><span class="p">.</span><span class="nx">selectEvent</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onIntervalSelect</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="p">);</span>
+				
+				<span class="nx">Event</span><span class="p">.</span><span class="nx">on</span><span class="p">([</span><span class="nx">lower</span><span class="o">,</span> <span class="nx">upper</span><span class="p">]</span><span class="o">,</span> <span class="s1">&#39;keyup&#39;</span><span class="o">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onInputKeyup</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="p">);</span>
+			<span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Constructs regular expression for date strings based on localization</span>
+<span class="c">			 * settings of IntervalCalendar.</span>
+<span class="c">			 * @method _getDateRegExp</span>
+<span class="c">			 * @private</span>
+<span class="c">			 * @return {RegExp} Regular expression object</span>
+<span class="c">			 */</span>
+			<span class="nx">_getDateRegExp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">ical</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="o">,</span>
+					<span class="nx">fields</span> <span class="o">=</span> <span class="p">[]</span><span class="o">,</span>
+					<span class="nx">sep</span><span class="o">;</span>
+				
+				<span class="nx">fields</span><span class="p">[</span><span class="nx">ical</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s1">&#39;mdy_year_position&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;([0-9]{4})&#39;</span><span class="o">;</span>
+				<span class="nx">fields</span><span class="p">[</span><span class="nx">ical</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s1">&#39;mdy_month_position&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;([0-9]{1,2})&#39;</span><span class="o">;</span>
+				<span class="nx">fields</span><span class="p">[</span><span class="nx">ical</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s1">&#39;mdy_day_position&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;([0-9]{1,2})&#39;</span><span class="o">;</span>
+				<span class="nx">sep</span> <span class="o">=</span> <span class="nx">ical</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s1">&#39;date_field_delimiter&#39;</span><span class="p">).</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+				
+				<span class="k">return</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s1">&#39;^&#39;</span> <span class="o">+</span> <span class="nx">fields</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;\\x&#39;</span> <span class="o">+</span> <span class="nx">sep</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;$&#39;</span><span class="p">);</span>
+			<span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Constructs localized date string from date object.</span>
+<span class="c">			 * @method _getDateString</span>
+<span class="c">			 * @private</span>
+<span class="c">			 * @param {Date} d Date object</span>
+<span class="c">			 * @return {String} String</span>
+<span class="c">			 */</span>
+			<span class="nx">_getDateString</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="p">.</span><span class="nx">_dateString</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
+			<span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Parses localized date string into date object, if valid.</span>
+<span class="c">			 * @method _parseDate</span>
+<span class="c">			 * @private</span>
+<span class="c">			 * @param {String} s String</span>
+<span class="c">			 * @return {Date} A date object if string was valid; null otherwise.</span>
+<span class="c">			 */</span>
+			<span class="nx">_parseDate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">dateRegExp</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_dateRegExp</span><span class="o">,</span>
+					<span class="nx">m</span> <span class="o">=</span> <span class="nx">dateRegExp</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+				
+				<span class="k">if</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">ical</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="o">,</span>
+						<span class="nx">year</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">m</span><span class="p">[</span><span class="nx">ical</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s1">&#39;mdy_year_position&#39;</span><span class="p">)]</span><span class="o">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">,</span>
+						<span class="nx">month</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">m</span><span class="p">[</span><span class="nx">ical</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s1">&#39;mdy_month_position&#39;</span><span class="p">)]</span><span class="o">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span>
+						<span class="nx">day</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">m</span><span class="p">[</span><span class="nx">ical</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s1">&#39;mdy_day_position&#39;</span><span class="p">)]</span><span class="o">,</span> <span class="mi">10</span><span class="p">);</span>
+					
+					<span class="k">if</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="nx">year</span> <span class="o">&amp;&amp;</span> <span class="nx">year</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">year</span> <span class="o">+=</span> <span class="mi">2000</span><span class="o">;</span>
+					<span class="p">}</span>
+					
+					<span class="k">return</span> <span class="nx">DateMath</span><span class="p">.</span><span class="nx">getDate</span><span class="p">(</span><span class="nx">year</span><span class="o">,</span> <span class="nx">month</span><span class="o">,</span> <span class="nx">day</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Renders IntervalCalendar.</span>
+<span class="c">			 * @method render</span>
+<span class="c">			 */</span>
+			<span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span> <span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Shows IntervalCalendar.</span>
+<span class="c">			 * @method show</span>
+<span class="c">			 */</span>
+			<span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span> <span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Hides IntervalCalendar.</span>
+<span class="c">			 * @method hide</span>
+<span class="c">			 */</span>
+			<span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span> <span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Synchronizes IntervalCalendar and input fields.</span>
+<span class="c">			 * @method sync</span>
+<span class="c">			 */</span>
+			<span class="nx">sync</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">ical</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="o">,</span>
+					<span class="nx">page</span> <span class="o">=</span> <span class="nx">ical</span><span class="p">.</span><span class="nx">pages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">,</span>
+					<span class="nx">lowerValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_lower</span><span class="p">.</span><span class="nx">value</span><span class="o">,</span>
+					<span class="nx">upperValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_upper</span><span class="p">.</span><span class="nx">value</span><span class="o">,</span>
+					<span class="nx">dateRegExp</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_dateRegExp</span><span class="o">,</span>
+					<span class="nx">reset</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+				
+				<span class="k">if</span><span class="p">(</span><span class="nx">dateRegExp</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">lowerValue</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">dateRegExp</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">upperValue</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">lowerDate</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parseDate</span><span class="p">(</span><span class="nx">lowerValue</span><span class="p">)</span><span class="o">,</span>
+						<span class="nx">upperDate</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parseDate</span><span class="p">(</span><span class="nx">upperValue</span><span class="p">);</span>
+					
+					<span class="k">if</span><span class="p">(</span><span class="nx">lowerDate</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="nx">upperDate</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span>
+						<span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">page</span><span class="p">.</span><span class="nx">isDateOOB</span><span class="p">(</span><span class="nx">lowerDate</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">page</span><span class="p">.</span><span class="nx">isDateOOB</span><span class="p">(</span><span class="nx">upperDate</span><span class="p">))</span>
+					<span class="p">{</span>
+						<span class="nx">ical</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(</span><span class="nx">lowerDate</span><span class="o">,</span> <span class="nx">upperDate</span><span class="p">);</span>
+						<span class="nx">ical</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s1">&#39;pagedate&#39;</span><span class="o">,</span> <span class="nx">lowerDate</span><span class="p">);</span>
+						<span class="nx">reset</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+				
+				<span class="k">if</span><span class="p">(</span><span class="nx">reset</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">ical</span><span class="p">.</span><span class="nx">resetInterval</span><span class="p">();</span>
+				<span class="p">}</span>
+				
+				<span class="nx">ical</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+			<span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Resets IntervalCalendar and input fields.</span>
+<span class="c">			 * @method reset</span>
+<span class="c">			 */</span>
+			<span class="nx">reset</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">ical</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="o">,</span>
+					<span class="nx">lower</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_lower</span><span class="o">,</span>
+					<span class="nx">upper</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_upper</span><span class="o">;</span>
+				
+				<span class="nx">lower</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">;</span>
+				<span class="nx">upper</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">;</span>
+				<span class="nx">ical</span><span class="p">.</span><span class="nx">resetInterval</span><span class="p">();</span>
+				<span class="nx">ical</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+			<span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Handles IntervalCalendar selection event.</span>
+<span class="c">			 * @method _onIntervalSelect</span>
+<span class="c">			 * @private</span>
+<span class="c">			 */</span>
+			<span class="nx">_onIntervalSelect</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ical</span><span class="p">.</span><span class="nx">getInterval</span><span class="p">();</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">lower</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_lower</span><span class="o">,</span>
+						<span class="nx">upper</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_upper</span><span class="o">,</span>
+						<span class="nx">lowerDate</span> <span class="o">=</span> <span class="nx">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">,</span>
+						<span class="nx">upperDate</span> <span class="o">=</span> <span class="nx">i</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+					
+					<span class="nx">lower</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getDateString</span><span class="p">(</span><span class="nx">lowerDate</span><span class="p">);</span>
+					<span class="nx">upper</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getDateString</span><span class="p">(</span><span class="nx">upperDate</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span><span class="o">,</span>
+
+			<span class="c">/**</span>
+<span class="c">			 * Handles input field keyup event.</span>
+<span class="c">			 * @method _onInputKeyup</span>
+<span class="c">			 * @private</span>
+<span class="c">			 */</span>
+			<span class="nx">_onInputKeyup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">sync</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">);</span>
+	
+	<span class="c">// Export</span>
+	<span class="nx">YAHOO</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;BLARGON.widget&#39;</span><span class="p">);</span>
+	<span class="nx">YAHOO</span><span class="p">.</span><span class="nx">BLARGON</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">IntervalCalendarInput</span> <span class="o">=</span> <span class="nx">IntervalCalendarInput</span><span class="o">;</span>
+<span class="p">})();</span>
+</pre></div>
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_intervalcalendarinput.html" title="intervalcalendarinput">intervalcalendarinput</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="YAHOO.BLARGON.widget.IntervalCalendarInput.html" title="YAHOO.BLARGON.widget.IntervalCalendarInput">YAHOO.BLARGON.widget.IntervalCalendarInput</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="intervalcalendarinput.js.html" title="intervalcalendarinput.js">intervalcalendarinput.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2009 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+    ALL_YUI_PROPS = [{"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#event_beforeLower_inputChange", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "event", "name": "beforeLower_inputChange"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#event_beforeUpper_inputChange", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "event", "name": "beforeUpper_inputChange"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#property__DEFAULT_CONFIG", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "property", "name": "_DEFAULT_CONFIG"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__getDateRegExp", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_getDateRegExp"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__getDateString", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_getDateString"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_hide", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "hide"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_initAttributes", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "initAttributes"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_initEvents", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "initEvents"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#config_lower_input", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "config", "name": "lower_input"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#event_lower_inputChange", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "event", "name": "lower_inputChange"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__onInputKeyup", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_onInputKeyup"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__onIntervalSelect", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_onIntervalSelect"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__parseDate", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_parseDate"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_render", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "render"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_reset", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "reset"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_show", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "show"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_sync", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "sync"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#config_upper_input", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "config", "name": "upper_input"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#event_upper_inputChange", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "event", "name": "upper_inputChange"}];
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<title>Interval Calendar Input Demo</title>
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/calendar/assets/skins/sam/calendar.css">
+</head>
+
+<body class="yui-skin-sam">
+<div id="cal"></div>
+<div style="clear:left;">
+	Lower date: <input id="lower" type="text" value=""><br>
+	Upper date: <input id="upper" type="text" value="">
+</div>
+
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/element/element-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/calendar/calendar-min.js"></script>
+<script type="text/javascript" src="../../intervalcalendar/src/js/intervalcalendar.js"></script>
+<script type="text/javascript" src="js/intervalcalendarinput.js"></script>
+<script type="text/javascript">
+	var cal = new YAHOO.BLARGON.widget.IntervalCalendarInput('cal',
+		{
+			pages: 2,
+			lower_input: 'lower',
+			upper_input: 'upper'
+		}
+	);
+</script>
+</body>
+</html>

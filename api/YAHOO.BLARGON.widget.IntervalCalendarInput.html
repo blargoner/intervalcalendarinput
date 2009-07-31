@@ -1,0 +1,941 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: intervalcalendarinput  YAHOO.BLARGON.widget.IntervalCalendarInput   (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css?stamp=1249079094.03" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css?stamp=1249079094.03" />
+
+    <script type="text/javascript" src="assets/api-js?stamp=1249079094.03"></script>
+    <script type="text/javascript" src="assets/ac-js?stamp=1249079094.03"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://blargon.net/" title="blargon">blargon</a></h1>
+        <h3>intervalcalendarinput&nbsp; <span class="subtitle">0.1</span></h3>
+        <a href="./index.html" title="blargon">blargon</a> 
+            &gt; <a href="./module_intervalcalendarinput.html" title="intervalcalendarinput">intervalcalendarinput</a>
+                 &gt; YAHOO.BLARGON.widget.IntervalCalendarInput 
+                
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <h2>
+                        
+
+                        
+                        
+                            Class <b property="yui:name">YAHOO.BLARGON.widget.IntervalCalendarInput</b>
+                        <span class="extends">
+                           - extends <a href="YAHOO.util.Element.html" title="YAHOO.util.Element">YAHOO.util.Element</a>
+                        </span>
+
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                
+  
+
+                    <div class="summary description" property="yui:description">
+                        IntervalCalendarInput instantiates an IntervalCalendar and associates
+it with two specified input fields which contain the lower and upper
+dates of the interval. The states of the IntervalCalendar and text
+inputs are kept in sync as the user interacts.
+<p>The format of the date strings in the input fields depends on the
+localization settings of the IntervalCalendar instance.</p>
+                    </div>
+
+                        <div class="section constructor details" rel="yui:constructor" resource="#constructor">
+                        <h3 id="constructor">Constructor</h3>
+                        <div class="content">
+                            <div class="detail">
+                                <strong property="yui:name">YAHOO.BLARGON.widget.IntervalCalendarInput</strong>
+                                <code>
+                                    (
+  
+                                        
+                                                
+                                                ctr
+
+                                                , 
+                                                cfg
+                                    )
+                                </code>
+                                <div class="description">
+                                        <dl rel="yui:parameters">
+                                            <dt>Parameters:</dt>
+                                                <dd rel="yui:parameter">
+                                                    <code><span property="yui:name">ctr</span>
+                                                    &lt;<span property="yui:type">String | HTMLElement</span>&gt;
+                                                    </code>
+                                                    <span property="yui:description"> Container element for IntervalCalendar</span>
+                                                </dd>
+                                                <dd rel="yui:parameter">
+                                                    <code><span property="yui:name">cfg</span>
+                                                    &lt;<span property="yui:type">Object</span>&gt;
+                                                    </code>
+                                                    <span property="yui:description"> Configuration object (also applied to IntervalCalendar)</span>
+                                                </dd>
+                                        </dl>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div rel="yui:properties" resource="#properties">
+                        <div class="section field details">
+                            <h3 id="properties">Properties</h3>
+                            <div class="content">
+                                    <div class="private" rel="yui:property" resource="#property__DEFAULT_CONFIG">
+                                    <h4><a name="property__DEFAULT_CONFIG" property="yui:name">_DEFAULT_CONFIG</a>
+                                        - <code>private static final <span property="yui:type">Object</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Default configuration values.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div rel="yui:methods" resource="#methods">
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="private" rel="yui:method" resource="#method__getDateRegExp">
+                                    <h4>
+                                        <a name="method__getDateRegExp">_getDateRegExp</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        RegExp
+                                            <strong property="yui:name">_getDateRegExp</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Constructs regular expression for date strings based on localization
+settings of IntervalCalendar.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        RegExp
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo">Regular expression object</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private" rel="yui:method" resource="#method__getDateString">
+                                    <h4>
+                                        <a name="method__getDateString">_getDateString</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        String
+                                            <strong property="yui:name">_getDateString</strong>
+                                           (
+                                                
+                                                        
+                                                         d
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Constructs localized date string from date object.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                        <code><span property="yui:name">d</span>
+                                                        &lt;<span property="yui:type">Date</span>&gt;
+                                                        </code>
+                                                        <span property="yui:description"> Date object</span>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        String
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo">String</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private" rel="yui:method" resource="#method__onInputKeyup">
+                                    <h4>
+                                        <a name="method__onInputKeyup">_onInputKeyup</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">_onInputKeyup</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Handles input field keyup event.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private" rel="yui:method" resource="#method__onIntervalSelect">
+                                    <h4>
+                                        <a name="method__onIntervalSelect">_onIntervalSelect</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">_onIntervalSelect</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Handles IntervalCalendar selection event.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private" rel="yui:method" resource="#method__parseDate">
+                                    <h4>
+                                        <a name="method__parseDate">_parseDate</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        Date
+                                            <strong property="yui:name">_parseDate</strong>
+                                           (
+                                                
+                                                        
+                                                         s
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Parses localized date string into date object, if valid.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                        <code><span property="yui:name">s</span>
+                                                        &lt;<span property="yui:type">String</span>&gt;
+                                                        </code>
+                                                        <span property="yui:description"> String</span>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        Date
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo">A date object if string was valid; null otherwise.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_hide">
+                                    <h4>
+                                        <a name="method_hide">hide</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">hide</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Hides IntervalCalendar.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_initAttributes">
+                                    <h4>
+                                        <a name="method_initAttributes">initAttributes</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">initAttributes</strong>
+                                           (
+                                                
+                                                        
+                                                         cfg
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Initializes configuration attributes.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                        <code><span property="yui:name">cfg</span>
+                                                        &lt;<span property="yui:type">Object</span>&gt;
+                                                        </code>
+                                                        <span property="yui:description"> Initial configuration object</span>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_initEvents">
+                                    <h4>
+                                        <a name="method_initEvents">initEvents</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">initEvents</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Attaches event handlers.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_render">
+                                    <h4>
+                                        <a name="method_render">render</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">render</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Renders IntervalCalendar.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_reset">
+                                    <h4>
+                                        <a name="method_reset">reset</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">reset</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Resets IntervalCalendar and input fields.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_show">
+                                    <h4>
+                                        <a name="method_show">show</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">show</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Shows IntervalCalendar.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_sync">
+                                    <h4>
+                                        <a name="method_sync">sync</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">sync</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Synchronizes IntervalCalendar and input fields.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div rel="yui:events" resource="#events">
+                        <div class="section method details">
+                            <h3 id="events">Events</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:event" resource="#event_beforeLower_inputChange">
+                                    <h4>
+                                        <a name="event_beforeLower_inputChange">beforeLower_inputChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong property="yui:name">beforeLower_inputChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         event
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Fires before the value for the configuration attribute 'lower_input' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                            <code><span property="yui:name">event</span>
+                                                                &lt;<span property="yui:type">{oldValue: any, newValue: any}</span>&gt;
+                                                            </code>
+                                                            <span property="yui:description">An object containing the previous attribute value and the new value.</span>
+                                                        </dd>
+                                                        
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:event" resource="#event_beforeUpper_inputChange">
+                                    <h4>
+                                        <a name="event_beforeUpper_inputChange">beforeUpper_inputChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong property="yui:name">beforeUpper_inputChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         event
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Fires before the value for the configuration attribute 'upper_input' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                            <code><span property="yui:name">event</span>
+                                                                &lt;<span property="yui:type">{oldValue: any, newValue: any}</span>&gt;
+                                                            </code>
+                                                            <span property="yui:description">An object containing the previous attribute value and the new value.</span>
+                                                        </dd>
+                                                        
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:event" resource="#event_lower_inputChange">
+                                    <h4>
+                                        <a name="event_lower_inputChange">lower_inputChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong property="yui:name">lower_inputChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         event
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Fires when the value for the configuration attribute 'lower_input' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                            <code><span property="yui:name">event</span>
+                                                                &lt;<span property="yui:type">{oldValue: any, newValue: any}</span>&gt;
+                                                            </code>
+                                                            <span property="yui:description">An object containing the previous attribute value and the new value.</span>
+                                                        </dd>
+                                                        
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:event" resource="#event_upper_inputChange">
+                                    <h4>
+                                        <a name="event_upper_inputChange">upper_inputChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong property="yui:name">upper_inputChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         event
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Fires when the value for the configuration attribute 'upper_input' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                            <code><span property="yui:name">event</span>
+                                                                &lt;<span property="yui:type">{oldValue: any, newValue: any}</span>&gt;
+                                                            </code>
+                                                            <span property="yui:description">An object containing the previous attribute value and the new value.</span>
+                                                        </dd>
+                                                        
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div rel="yui:attributes" resource="#configattributes">
+                        <div class="section field details">
+                            <h3 id="configattributes">Configuration Attributes</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:attribute" resource="#config_lower_input">
+                                    <h4><a name="config_lower_input">lower_input</a>
+                                        <code>- <span property="yui:type">String | HTMLElement</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Input field for lower date. Must be set on instantiation.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: null
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="" rel="yui:attribute" resource="#config_upper_input">
+                                    <h4><a name="config_upper_input">upper_input</a>
+                                        <code>- <span property="yui:type">String | HTMLElement</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Input field for upper date. Must be set on instantiation.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: null
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+
+                            </div>
+                        </div>
+
+                    </div>
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_intervalcalendarinput.html" title="intervalcalendarinput">intervalcalendarinput</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="YAHOO.BLARGON.widget.IntervalCalendarInput.html" title="YAHOO.BLARGON.widget.IntervalCalendarInput">YAHOO.BLARGON.widget.IntervalCalendarInput</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="intervalcalendarinput.js.html" title="intervalcalendarinput.js">intervalcalendarinput.js</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="propertyList" class="module">
+                        <h4>Properties</h4>
+                        <ul class="content">        
+                                <li class="private"><a href="#property__DEFAULT_CONFIG" title="_DEFAULT_CONFIG">_DEFAULT_CONFIG</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="methodsList" class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class="private"><a href="#method__getDateRegExp" title="_getDateRegExp">_getDateRegExp</a></li>
+                                <li class="private"><a href="#method__getDateString" title="_getDateString">_getDateString</a></li>
+                                <li class="private"><a href="#method__onInputKeyup" title="_onInputKeyup">_onInputKeyup</a></li>
+                                <li class="private"><a href="#method__onIntervalSelect" title="_onIntervalSelect">_onIntervalSelect</a></li>
+                                <li class="private"><a href="#method__parseDate" title="_parseDate">_parseDate</a></li>
+                                <li class=""><a href="#method_hide" title="hide">hide</a></li>
+                                <li class=""><a href="#method_initAttributes" title="initAttributes">initAttributes</a></li>
+                                <li class=""><a href="#method_initEvents" title="initEvents">initEvents</a></li>
+                                <li class=""><a href="#method_render" title="render">render</a></li>
+                                <li class=""><a href="#method_reset" title="reset">reset</a></li>
+                                <li class=""><a href="#method_show" title="show">show</a></li>
+                                <li class=""><a href="#method_sync" title="sync">sync</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="eventsList" class="module">
+                        <h4>Events</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#event_beforeLower_inputChange" title="beforeLower_inputChange">beforeLower_inputChange</a></li>
+                                <li class=""><a href="#event_beforeUpper_inputChange" title="beforeUpper_inputChange">beforeUpper_inputChange</a></li>
+                                <li class=""><a href="#event_lower_inputChange" title="lower_inputChange">lower_inputChange</a></li>
+                                <li class=""><a href="#event_upper_inputChange" title="upper_inputChange">upper_inputChange</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="configList" class="module">
+                        <h4>Configuration Attributes</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#config_lower_input" title="lower_input">lower_input</a></li>
+                                <li class=""><a href="#config_upper_input" title="upper_input">upper_input</a></li>
+                        </ul>
+                    </div>
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2009 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+    ALL_YUI_PROPS = [{"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#event_beforeLower_inputChange", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "event", "name": "beforeLower_inputChange"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#event_beforeUpper_inputChange", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "event", "name": "beforeUpper_inputChange"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#property__DEFAULT_CONFIG", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "property", "name": "_DEFAULT_CONFIG"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__getDateRegExp", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_getDateRegExp"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__getDateString", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_getDateString"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_hide", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "hide"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_initAttributes", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "initAttributes"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_initEvents", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "initEvents"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#config_lower_input", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "config", "name": "lower_input"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#event_lower_inputChange", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "event", "name": "lower_inputChange"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__onInputKeyup", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_onInputKeyup"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__onIntervalSelect", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_onIntervalSelect"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method__parseDate", "access": "private", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "_parseDate"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_render", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "render"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_reset", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "reset"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_show", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "show"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#method_sync", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "method", "name": "sync"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#config_upper_input", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "config", "name": "upper_input"}, {"url": "YAHOO.BLARGON.widget.IntervalCalendarInput.html#event_upper_inputChange", "access": "", "host": "YAHOO.BLARGON.widget.IntervalCalendarInput", "type": "event", "name": "upper_inputChange"}];
+</script>
+</body>
+</html>
